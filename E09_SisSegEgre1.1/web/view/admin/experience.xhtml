@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="data" value="#{experienceController.item}" var="exp" sortBy="#{exp.ape_alum}">
+                        <p:column headerText="Nombres" groupRow="true">
+                            <p:outputLabel value="#{exp.nom_alum} #{exp.ape_alum}"/>
+                        </p:column>
+                        <p:column headerText="Empresa">
+                            <p:outputLabel value="#{exp.nom_emp}"/>
+                        </p:column>
+                        <p:column headerText="Cargo">
+                            <p:outputLabel value="#{exp.cargo_emp}"/>
+                        </p:column>
+                        <p:column headerText="F. Inicio">
+                            <p:outputLabel value="#{exp.fch_ini}"/>
+                        </p:column>
+                        <p:column headerText="F. Fin">
+                            <p:outputLabel value="#{exp.fch_fin}"/>
+                        </p:column>
+
+                    </p:dataTable>
+                    <p:commandButton value="listar" actionListener="#{experienceController.listarExperienciaAdmin()}" update="data"/>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

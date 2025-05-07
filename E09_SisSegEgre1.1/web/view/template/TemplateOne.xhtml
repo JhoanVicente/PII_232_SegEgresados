@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="../../../resources/images/hat.png"/>
+        <link href="../../../resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../../../resources/css/colors/blue.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/Primelook.css" rel="stylesheet" type="text/css"/>
+        <title>SEGE</title>
+    </h:head>
+
+    <h:body class="fix-sidebar fix-header card-no-border">
+
+        <div id="main-wrapper">
+            <ui:insert name="top">
+                <header class="topbar">
+                    <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                        <!-- Logo -->
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="#">
+                                <b>
+                                    <!--<i class="fa fa-graduation-cap" style="color: blue;font-size: 30px;"></i><span>SEGE</span>-->
+                                    <img src="../../../resources/images/hat.png" width="42" height="42" alt="homepage" class="dark-logo" /><span>SEGE</span>
+                                </b>
+                            </a>
+                        </div>
+                        <!-- End Logo -->
+
+                        <div class="navbar-collapse">
+                            <!-- toggle and nav items -->
+                            <ul class="navbar-nav mr-auto mt-md-0">
+                                <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                                <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                                <p:dialog widgetVar="jquery" id="dos"></p:dialog>
+                            </ul>
+                            <!-- End toggle and nav items -->
+
+                            <!-- Profile and Search -->
+                            <ul class="navbar-nav my-lg-0">
+                                <!-- Search -->
+                                <li class="nav-item hidden-sm-down search-box"> <a class="nav-link hidden-sm-down text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="ti-search"></i></a>
+                                    <form class="app-search">
+                                        <input type="text" class="form-control" placeholder="Buscar..."/> <a class="srh-btn"><i class="ti-close"></i></a> </form>
+                                </li>
+
+                                <!-- Profile -->
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><div class="btn btn-dark btn-circle">#{userController.user.letraPerfil}</div></a>
+                                    <div class="dropdown-menu dropdown-menu-right scale-up">
+                                        <ul class="dropdown-user">
+                                            <li>
+                                                <div class="dw-user-box">
+                                                    <div class="u-text">
+                                                        <h4 style="font-weight: bold">#{userController.user.nom_per} #{userController.user.ape_per}</h4>
+                                                        <p class="text-muted" style="font-weight: bold">#{userController.user.correo_per}</p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li role="separator" class="divider"></li>
+                                            <h:form>
+                                                <li>
+                                                    <p:commandButton value="Mi Perfil" icon="fa fa-user" class="look light btn-block" style="text-align: left"/>
+                                                </li>
+                                                <li>
+                                                    <p:commandButton value="Configuración" icon="fa fa-cog" class="look light btn-block" style="text-align: left"/>
+                                                </li>
+                                                <li>
+                                                    <p:commandButton value="Cerrar Sesión" icon="fa fa-power-off" actionListener="#{userController.logout()}" 
+                                                                     class="look light btn-block" style="text-align: left"/>
+                                                </li>
+                                            </h:form>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- End profiles and search -->
+                        </div>
+                    </nav>
+                </header>
+                <aside class="left-sidebar">
+                    <!-- Sidebar scroll-->
+                    <div class="scroll-sidebar">
+                        <!-- Sidebar navigation-->
+                        <nav class="sidebar-nav">
+                            <ul id="sidebarnav">
+                                <li class="nav-devider"></li>
+                                <li class="nav-small-cap">PERSONAL</li>
+                                <p:menuitem rendered="#{userController.user.tipo_user == 1}">
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="../admin/dashboard.xhtml" aria-expanded="false">
+                                            <i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span>
+                                        </a>
+                                    </li>
+                                </p:menuitem>
+                                <p:menuitem rendered="#{userController.user.tipo_user == 3}">
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="#" aria-expanded="false">
+                                            <i class="mdi mdi-account-circle"></i><span class="hide-menu">Perfil </span>
+                                        </a>
+                                    </li>
+                                </p:menuitem>
+                                <p:menuitem rendered="#{userController.user.tipo_user == 3}">
+                                    <li>
+                                        <a class="waves-effect waves-dark" href="../content/experienceuser.xhtml" aria-expanded="false">
+                                            <i class="mdi mdi-elevation-rise"></i><span class="hide-menu">Mi Experiencia </span>
+                                        </a>
+                                    </li>
+                                </p:menuitem>
+
+                                <li class="nav-small-cap">Laboral</li>
+                                <p:menuitem rendered="#{userController.user.tipo_user == 1}">
+                                    <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-arrange-send-backward"></i><span class="hide-menu">Mantenimientos</span></a>
+                                        <ul aria-expanded="false" class="collapse">
+                                            <li><a href="../admin/Egresado.xhtml">Egresados</a></li>
+                                            <li><a href="../admin/empresas.xhtml">Empresas</a></li>
+                                            <li><a href="../admin/experience.xhtml">Experiencia</a></li>
+                                        </ul>
+                                    </li>
+                                </p:menuitem>
+
+                                <li>
+                                    <a class="waves-effect waves-dark" href="../content/Bolsatrabajo.xhtml" aria-expanded="false">
+                                        <i class="mdi mdi-briefcase"></i><span class="hide-menu">Bolsa de Trabajo </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="waves-effect waves-dark" href="../content/capacitaciones.xhtml" aria-expanded="false">
+                                        <i class="mdi mdi-seal"></i><span class="hide-menu">Capacitaciones </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <!-- End Sidebar navigation -->
+                    </div>
+                    <!-- End Sidebar scroll-->
+                </aside>
+            </ui:insert>
+
+            <div class="page-wrapper">
+                <ui:insert name="none-content">
+                    <div class="row page-titles">
+                        <div class="col-md-5 align-self-center">
+                            <h3 class="text-themecolor">Titulo</h3>
+                        </div>
+                    </div>
+                </ui:insert>
+
+
+                <div class="container-fluid">
+                    <ui:insert name="content">
+                        Contenido
+                    </ui:insert> 
+                </div>
+
+                <footer class="footer">
+                    © 2017 Admin Press Admin by Developer.
+                </footer>
+            </div>
+        </div>
+
+        <!--<script src="../../../resources/js/jquery.min.js" type="text/javascript"></script>-->
+        <script src="../../../resources/js/popper.min.js" type="text/javascript"></script>
+        <script src="../../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../resources/js/jquery.slimscroll.js" type="text/javascript"></script>
+        <script src="../../../resources/js/waves.js" type="text/javascript"></script>
+        <script src="../../../resources/js/sidebarmenu.js" type="text/javascript"></script>
+        <script src="../../../resources/js/sticky-kit.min.js" type="text/javascript"></script>
+        <script src="../../../resources/js/jquery.sparkline.min.js" type="text/javascript"></script>
+        <script src="../../../resources/js/custom.min.js" type="text/javascript"></script>
+        <script src="../../../resources/js/jQuery.style.switcher.js" type="text/javascript"></script>
+
+    </h:body>
+
+</html>

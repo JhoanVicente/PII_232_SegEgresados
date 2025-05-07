@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="none-content">
+                <div class="row page-titles">
+                    <div class="col-md-5 align-self-center">
+                        <h3 class="text-themecolor">Dashboard</h3>
+                    </div>
+                </div>
+            </ui:define>
+
+            <ui:define name="content">
+
+                <h:form>
+                    <div class="row">
+                        <div class="col-lg-4 col-xlg-3">
+                            <div class="card card-inverse card-info">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="m-r-20 align-self-center">
+                                            <h1 class="text-white"><i class="mdi mdi-account-star-variant"></i></h1></div>
+                                        <div>
+                                            <h3 class="card-title">Egresados</h3>
+                                            <h6 class="card-subtitle">Total</h6> </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 p-t-10 p-b-20"></div>
+                                        <div class="col-12 p-t-10 p-b-20 align-self-center">
+                                            <h2 class="font-light text-white" style="font-size: 3em; float: right">#{egresadosController.es.COUNT_PER}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card card-inverse card-danger">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <div class="m-r-20 align-self-center">
+                                            <h1 class="text-white"><i class="mdi mdi-city"></i></h1></div>
+                                        <div>
+                                            <h3 class="card-title">Empresas</h3>
+                                            <h6 class="card-subtitle">Total</h6> </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 p-t-10 p-b-20"></div>
+                                        <div class="col-12 p-t-10 p-b-20 align-self-center">
+                                            <h2 class="font-light text-white" style="font-size: 3em; float: right">#{empresaController.emp.count_emp}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

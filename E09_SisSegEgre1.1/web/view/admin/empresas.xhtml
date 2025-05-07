@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="none-content">
+                <h:form>
+                    <div class="row page-titles">
+                        <div class="col-md-5 align-self-center">
+                            <h3 class="text-themecolor">Lista de Empresas</h3>
+                        </div>
+                        <div class="col-md-7">
+                            <p:commandButton value="Habilitar Empresa" onclick="PF('dialogUpdate').show()" class="look secondary" style="float: right"/>
+                            <p:commandButton value="Nueva Empresa" onclick="PF('createEmpDialog').show()" class="look primary" style="float: right"/>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+            
+            <ui:define name="content">
+                <h:form id="from">
+                    <p:dataTable 
+                        id="tblEmpresasActivas" 
+                        value="#{empresaController.lstActivo}" 
+                        var="activa" 
+                        rowKey="#{activa.cod_emp}" 
+                        selection="#{empresaController.selectedActivo}" 
+                        selectionMode="single">
+                        <p:column headerText="RUC">
+                            <p:outputLabel value="#{activa.ruc_emp}"/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{activa.nom_emp}"/>
+                        </p:column>
+                        <p:column headerText="Encargado">
+                            <p:outputLabel value="#{activa.enc_emp}"/>
+                        </p:column>
+                        <p:column headerText="Dirección">
+                            <p:outputLabel value="#{activa.dir_emp}"/>
+                        </p:column>
+                        <p:column headerText="Telefono">
+                            <p:outputLabel value="#{activa.tel1_emp}"/>
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:contextMenu for="tblEmpresasActivas" >
+                        <p:menuitem value="Inhabilitar" actionListener="#{empresaController.inhabilitarEmp()}" update="from tblEmpresasInactivos tblEmpresasActivas"/>
+                    </p:contextMenu>
+
+                    <p:dialog id="createEmpDlg" widgetVar="createEmpDialog" header="Nueva Empresa" modal="true">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel value="RUC"/>
+                            <p:inputText value="#{empresaController.emp.ruc_emp}"/>
+                            <p:outputLabel value="Nombre"/>
+                            <p:inputText value="#{empresaController.emp.nom_emp}"/>
+                            <p:outputLabel value="Encargado"/>
+                            <p:inputText value="#{empresaController.emp.enc_emp}"/>
+                            <p:outputLabel value="Dirección"/>
+                            <p:inputText value="#{empresaController.emp.dir_emp}"/>
+                            <p:outputLabel value="Telefono"/>
+                            <p:inputText value="#{empresaController.emp.tel1_emp}"/>
+                            <p:outputLabel value="Referencia"/>
+                            <p:inputText value="#{empresaController.emp.ref_emp}"/>
+                        </h:panelGrid>
+                        <p:separator/>
+                        <p:commandButton value="Registrar" actionListener="#{empresaController.agregar()}"/>
+                    </p:dialog>
+
+                    <p:dialog  widgetVar="dialogUpdate" header="Habilitar Empresa"  height="300" width="1000">
+                        <p:dataTable 
+                            id="tblEmpresasInactivos" 
+                            value="#{empresaController.lstInactivo}" 
+                            var="empresa"
+                            rowKey="#{empresa.cod_emp}"
+                            selection="#{empresaController.selectedInactivo}"
+                            selectionMode="single">
+                            <p:column headerText="RUC">
+                                <p:outputLabel value="#{empresa.ruc_emp}"/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <p:outputLabel value="#{empresa.nom_emp}"/>
+                            </p:column>
+                            <p:column headerText="Encargado">
+                                <p:outputLabel value="#{empresa.enc_emp}"/>
+                            </p:column>
+                            <p:column headerText="Dirección">
+                                <p:outputLabel value="#{empresa.dir_emp}"/>
+                            </p:column>
+                            <p:column headerText="Telefono">
+                                <p:outputLabel value="#{empresa.tel1_emp}"/>
+                            </p:column>
+                        </p:dataTable>
+
+                        <p:contextMenu for="tblEmpresasInactivos" >
+                            <p:menuitem value="Habilitar" actionListener="#{empresaController.habilitarEmp()}" update="from tblEmpresasInactivos tblEmpresasActivas"/>
+                        </p:contextMenu>
+                    </p:dialog>
+
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

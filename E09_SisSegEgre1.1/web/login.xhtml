@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <link rel="icon" type="image/png" sizes="16x16" href="resources/images/hat.png"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/Primelook.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css/colors/blue.css" rel="stylesheet" type="text/css"/>
+        <title>SEGE | Login</title>
+    </h:head>
+    <h:body>
+        <section id="wrapper">
+            <div class="login-register" style="background: #616161;">
+                <div class="login-box card">
+                    <div class="card-body">
+                        <h:form class="form-horizontal form-material" id="loginform">
+                            <p:growl id="msj" autoUpdate="true" showDetail="true"/>
+                            <p:focus context="loginform"/>
+                            <h2 class="box-title m-b-20">Sistema de Seguimiento de Egresados</h2>
+                            <div class="form-group ">
+                                <div class="col-xs-12">
+                                    <p:inputText id="username" class="form-control" value="#{userController.user.nom_user}" placeholder="Usuario"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <p:password class="form-control" value="#{userController.user.pass_user}" placeholder="Contraseña"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group text-center m-t-20">
+                                <div class="col-xs-12">
+                                    <p:commandButton value="Iniciar Sesión" class="look primary btn-lg btn-block text-uppercase waves-effect waves-light"
+                                                     actionListener="#{userController.iniciarSesion()}"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+<!--                                    <div class="social">
+                                        <a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip" title="" data-original-title="Login with Facebook"> <i aria-hidden="true" class="fa fa-facebook"></i> </a>
+                                        <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="" data-original-title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a>
+                                    </div>-->
+                                </div>
+                            </div>
+                            <div class="form-group m-b-0">
+                                <div class="col-sm-12 text-center">
+                                    <p>No tengo una cuenta? <a href="#" ><b>Regístrate</b></a></p>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </h:body>
+</html>
+

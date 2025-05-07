@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="none-content">
+                <h:form>
+                    <div class="row page-titles">
+                        <div class="col-md-5 align-self-center">
+                            <h3 class="text-themecolor">Lista de Egresados</h3>
+                        </div>
+                        <div class="col-md-7">
+                            <p:commandButton value="Nuevo Articulo" onclick="PF('createBolDialog').show()" rendered="#{userController.user.tipo_user == 1}"
+                                             class="look primary" style="float: right"/>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+            
+            <ui:define name="content">
+                <h:form id="form">
+                    
+                    <p:carousel id="carouselBol" value="#{bolsatController.item}" headerText="Bolsa de Trabajo" var="bol" itemStyle="text-align:center" responsive="true">
+                        <p:panelGrid columns="1" style="width:100%;margin:10px 0px;height: 300px" columnClasses="label,value" layout="grid" styleClass="ui-panelgrid-blank">
+                            
+                            <h:outputText value="Especialidad:" style="font-weight: bold;color: #000" />
+                            <h:outputText value="#{bol.esp_bol}" style="color: #000"/>
+
+                            <h:outputText value="Empresa:" style="font-weight: bold;color: #000" />
+                            <h:outputText value="#{bol.nom_emp}" style="color: #000"/>
+
+                            <h:outputText value="Descripción:" style="font-weight: bold;color: #000"/>
+                            <h:outputText value="#{bol.des_bol}" style="color: #000"/>
+
+                        </p:panelGrid>
+                    </p:carousel>
+                    
+                    <p:dialog id="createBolDlg" widgetVar="createBolDialog" header="Nueva Propuesta" modal="true">
+                        <h:panelGrid columns="2">
+                            <p:outputLabel value="Especialidad"/>
+                            <p:inputText value="#{bolsatController.bol.esp_bol}"/>
+                            <p:outputLabel value="Empresa"/>
+                            <p:inputText value="#{bolsatController.bol.nom_emp}"/>
+                            <p:outputLabel value="Descripción"/>
+                            <p:inputTextarea value="#{bolsatController.bol.des_bol}"/>
+                        </h:panelGrid>
+                        <p:separator/>
+                        <p:commandButton value="Ingresar" actionListener="#{bolsatController.agregarBol()}" update="carouselBol"/>
+                    </p:dialog>
+                    
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

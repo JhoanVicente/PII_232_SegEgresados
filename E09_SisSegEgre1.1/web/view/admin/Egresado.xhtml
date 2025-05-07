@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template/TemplateOne.xhtml">
+
+            <ui:define name="none-content">
+                <h:form>
+                    <div class="row page-titles">
+                        <div class="col-md-5 align-self-center">
+                            <h3 class="text-themecolor">Lista de Egresados</h3>
+                        </div>
+                        <div class="col-md-7">
+                            <p:commandButton value="Ver Alumnos" onclick="PF('alumnos').show()" 
+                                             class="look primary" style="float: right"/>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form id="from">
+                    <p:dataTable value="#{egresadosController.eg}" var="eg" id="egresados">
+                        <p:column style="width: 40px;"> 
+                            <p:rowToggler/>
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <p:outputLabel value="#{eg.NOM_PER}" />
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <p:outputLabel value="#{eg.APE_PER}" />
+                        </p:column>
+                        <p:column headerText="DNI">
+                            <p:outputLabel value="#{eg.DNI_PER}" />
+                        </p:column>
+                        <p:column headerText="Celular">
+                            <p:outputLabel value="#{eg.CEL_PER}" />
+                        </p:column> 
+
+                        <p:rowExpansion>
+                            <p:panelGrid columns="2">
+                                <p:outputLabel value="Correo" style="font-weight: bold;" />
+                                <p:outputLabel value="#{eg.CORREO_PER}"/>
+                                <p:outputLabel value="F. Nacimiento" style="font-weight: bold;" />
+                                <p:outputLabel value="#{eg.FCH_NAC_PER}"/>
+                            </p:panelGrid>
+                        </p:rowExpansion>
+                    </p:dataTable>
+
+                    <p:dialog id="alumnos" widgetVar="alumnos" header="Lista de Alumnos" height="300" width="1000">
+
+                        <p:dataTable  id="alumn" value="#{egresadosController.al}" var="al" rowKey="#{al.COD_PER}" selection="#{egresadosController.alm}" selectionMode="single" >
+                            <p:column>
+                                <p:rowToggler/>
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <p:outputLabel value="#{al.NOM_PER}" />
+                            </p:column>
+                            <p:column headerText="Apellido">
+                                <p:outputLabel value="#{al.APE_PER}" />
+                            </p:column>
+                            <p:column headerText="DNI">
+                                <p:outputLabel value="#{al.DNI_PER}" />
+                            </p:column>
+                            <p:column headerText="Celular">
+                                <p:outputLabel value="#{al.CEL_PER}" />
+                            </p:column>          
+
+                            <p:rowExpansion>
+                                <p:panelGrid columns="2">
+                                    <p:outputLabel value="Correo" style="font-weight: bold;" />
+                                    <p:outputLabel value="#{al.CORREO_PER}"/>
+                                    <p:outputLabel value="F. Nacimiento" style="font-weight: bold;" />
+                                    <p:outputLabel value="#{al.FCH_NAC_PER}"/>
+                                </p:panelGrid>
+                            </p:rowExpansion>
+
+
+
+                        </p:dataTable>
+                        <p:contextMenu for="alumn" >
+                            <p:menuitem value="Egresar" actionListener="#{egresadosController.egresarAlumno()}" update="alumn egresados"/>
+                        </p:contextMenu>  
+                    </p:dialog>
+
+
+                </h:form>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
